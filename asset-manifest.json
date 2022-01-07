@@ -1,26 +1,17 @@
 {
   "files": {
-    "main.css": "/visualize/static/css/main.eb40d98d.chunk.css",
-    "main.js": "/visualize/static/js/main.4b56fed9.chunk.js",
-    "main.js.map": "/visualize/static/js/main.4b56fed9.chunk.js.map",
-    "runtime-main.js": "/visualize/static/js/runtime-main.6bebf4db.js",
-    "runtime-main.js.map": "/visualize/static/js/runtime-main.6bebf4db.js.map",
-    "static/css/2.68ba508b.chunk.css": "/visualize/static/css/2.68ba508b.chunk.css",
-    "static/js/2.8d4371df.chunk.js": "/visualize/static/js/2.8d4371df.chunk.js",
-    "static/js/2.8d4371df.chunk.js.map": "/visualize/static/js/2.8d4371df.chunk.js.map",
-    "static/js/3.e321526f.chunk.js": "/visualize/static/js/3.e321526f.chunk.js",
-    "static/js/3.e321526f.chunk.js.map": "/visualize/static/js/3.e321526f.chunk.js.map",
+    "main.css": "/visualize/static/css/main.b4aa10d8.css",
+    "main.js": "/visualize/static/js/main.e0962cdd.js",
+    "static/js/787.f5c39901.chunk.js": "/visualize/static/js/787.f5c39901.chunk.js",
+    "static/media/frauenkirche.jpg": "/visualize/static/media/frauenkirche.4b96e6bf9c6cb57d0f9b.jpg",
+    "static/media/Novar.ttf": "/visualize/static/media/Novar.7b7beb4e69e6104e27f2.ttf",
     "index.html": "/visualize/index.html",
-    "static/css/2.68ba508b.chunk.css.map": "/visualize/static/css/2.68ba508b.chunk.css.map",
-    "static/css/main.eb40d98d.chunk.css.map": "/visualize/static/css/main.eb40d98d.chunk.css.map",
-    "static/js/2.8d4371df.chunk.js.LICENSE.txt": "/visualize/static/js/2.8d4371df.chunk.js.LICENSE.txt",
-    "static/media/WelcomeComponent.scss": "/visualize/static/media/frauenkirche.4b96e6bf.jpg"
+    "main.b4aa10d8.css.map": "/visualize/static/css/main.b4aa10d8.css.map",
+    "main.e0962cdd.js.map": "/visualize/static/js/main.e0962cdd.js.map",
+    "787.f5c39901.chunk.js.map": "/visualize/static/js/787.f5c39901.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.6bebf4db.js",
-    "static/css/2.68ba508b.chunk.css",
-    "static/js/2.8d4371df.chunk.js",
-    "static/css/main.eb40d98d.chunk.css",
-    "static/js/main.4b56fed9.chunk.js"
+    "static/css/main.b4aa10d8.css",
+    "static/js/main.e0962cdd.js"
   ]
 }
