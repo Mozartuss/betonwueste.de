@@ -1,4 +1,4 @@
-name: Check Code
+name: Lint TypeScript
 
 # Controls when the workflow will run
 on:
@@ -27,9 +27,6 @@ jobs:
 
       - name: Install  packages
         run: yarn install
-
-      - name: Prettier
-        run: yarn prettier:check
 
       - name: Lint
         run: yarn lint
