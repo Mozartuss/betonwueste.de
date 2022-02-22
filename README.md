@@ -1,4 +1,6 @@
 # Betonwüste / desert of concrete
+[![CodeFactor](https://www.codefactor.io/repository/github/mozartuss/betonwueste.de/badge)](https://www.codefactor.io/repository/github/mozartuss/betonwueste.de) 
+![example workflow](https://github.com/Mozartuss/betonwueste.de/actions/workflows/main.yml/badge.svg)
 
 This project is the code base for the website www.betonwüste.de. \
 The website will show how land consumption in Bavaria will change between 1980 and 2020. 
