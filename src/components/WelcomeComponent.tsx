@@ -137,7 +137,7 @@ const WelcomeComponent = (): JSX.Element => {
                     </div>
                 </Link>
                 <div id={"image-author"} className={"image-author"}>
-                    Foto: Franz Wanner, Secret Service Landmark, aus der Reihe Secret Sites, 2018 
+                    Foto: Franz Wanner, Secret Service Landmark, aus der Reihe Secret Sites, 2018
                 </div>
                 <div id={"required-links"} className={"required-links"}>
                     <button

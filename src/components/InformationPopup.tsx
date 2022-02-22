@@ -115,7 +115,9 @@ const InformationPopup = ({
                         </a>
                     </li>
                     <li>
-                        <a href="http://roulettepolar.net/">Foto: Franz Wanner, Secret Service Landmark, aus der Reihe Secret Sites, 2018</a>
+                        <a href="http://roulettepolar.net/">
+                            Foto: Franz Wanner, Secret Service Landmark, aus der Reihe Secret Sites, 2018
+                        </a>
                     </li>
                     <li>
                         <a href="https://feathericons.com/">Feather Icons</a>
