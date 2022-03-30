@@ -4,8 +4,10 @@ import { useEffect, useRef, useState } from "react";
 import useWindowDimensions from "../hooks/useWindowDimensions";
 import PopupComponent from "./PopupComponent";
 import PrivacyPolicyComponent from "./PrivacyPolicyComponent";
+import { useTranslation } from "react-i18next";
 
 const WelcomeComponent = (): JSX.Element => {
+    const { t } = useTranslation();
     const [scrollPosition, setScrollPosition] = useState(0);
     const [showPrivacyPolicyPopup, setShowPrivacyPolicyPopup] = useState<boolean | null>(null);
     const backgroundRef = useRef<HTMLDivElement>(null);
@@ -96,28 +98,20 @@ const WelcomeComponent = (): JSX.Element => {
                             Betonwüste
                         </p>
                         <p className={"subtitle"} ref={subTitleRef}>
-                            Flächenverbrauch Bayerns in Zahlen
+                            {t("subtitle")}
                         </p>
                     </div>
                     <div className={"quote-container"} ref={quoteRef}>
                         <div className={"item quote1"}>
                             <div className={"quotation-mark"} />
-                            <p className={"text"}>
-                                {
-                                    "Durch das Wachstum ist die Siedlungs- und Verkehrsfläche von 1980 bis 2017 um mehr als ein Drittel angewachsen."
-                                }
-                            </p>
+                            <p className={"text"}>{t("quote1")}</p>
                             <p className={"author"}>
                                 <i>{"- Planungsverband Äußerer Wirtschaftsraum München"}</i>
                             </p>
                         </div>
                         <div className={"item quote2"}>
                             <div className={"quotation-mark"} />
-                            <p className={"text"}>
-                                {
-                                    "Derzeit werden in Bayern täglich 10,8 Hektar Boden für Industriegebiete, Straßen und Siedlungen zubetoniert."
-                                }
-                            </p>
+                            <p className={"text"}>{t("quote2")}</p>
                             <p className={"author"}>
                                 <i>{"- Ludwig Hartmann, Mitglied des Bayerischen Landtags"}</i>
                             </p>

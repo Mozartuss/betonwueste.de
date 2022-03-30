@@ -13,7 +13,7 @@ module.exports = {
         "plugin:react/recommended",
         "plugin:react/jsx-runtime",
     ],
-    plugins: ["react", "@typescript-eslint", "jest", "import"],
+    plugins: ["react", "@typescript-eslint", "jest", "import", "react-hooks"],
     env: {
         browser: true,
         es6: true,

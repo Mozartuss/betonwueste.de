@@ -11,6 +11,7 @@ import { colord, extend } from "colord";
 import data from "../data/data.json";
 import { IDataEntry } from "../utils/Helper";
 import mixPlugin from "colord/plugins/mix";
+import { useTranslation } from "react-i18next";
 
 extend([mixPlugin]);
 
@@ -21,6 +22,7 @@ export interface ICLickedLK {
 }
 
 const MainComponent = ({ isDark, isAbsolute }: { isDark: boolean; isAbsolute: boolean }): JSX.Element => {
+    const { t } = useTranslation();
     const [getCurrentCountries, setCurrentCountries] = useState<string>("Bayern");
     const [getCurrentYear, setCurrentYear] = useState<number>(1980);
     const [modalState, setModalState] = useState<boolean>(false);
@@ -126,27 +128,16 @@ const MainComponent = ({ isDark, isAbsolute }: { isDark: boolean; isAbsolute: bo
 
     ShowWindowDimensions();
 
-    const textValue: JSX.Element = (
-        <>
-            2014 wurde in Bayern das <b>Automatisierte Liegenschaftsbuchs</b> (ALB) von{" "}
-            <b>Amtliche Liegenschaftskatasterinformationssystem</b> abgelöst. Dabei gab es eine neue Kategorisierung für
-            Flächen. Durch diese neue Kategorisierung, konnte es passieren das zum Beispiel ein Truppenübungsplatz von
-            Siedlungsfläche in die Grünfläche übergegangen ist.
-        </>
-    );
+    const textValue: JSX.Element = <>{t("ALBtoALKIS_Text")}</>;
     const titleValue: JSX.Element = (
         <>
-            Wechsel von ALB zu ALKIS<sup>®</sup>
+            {t("ALBtoALKIS")}
+            <sup>®</sup>
         </>
     );
 
-    const textValue2: JSX.Element = (
-        <>
-            Zwischen 1992 und 1996 wurde eine Veränderte Kategorisierung der Daten durchgeführt. Es können sich deshalb
-            speziell große Unterschiede bei Daten bezüglich industriell und wohnlich genutzten Flächen ergeben.
-        </>
-    );
-    const titleValue2: JSX.Element = <>Kategorisierungsupdate</>;
+    const textValue2: JSX.Element = <>{t("Kategorisierungsupdate_Text")}</>;
+    const titleValue2: JSX.Element = <>{t("Kategorisierungsupdate")}</>;
 
     const moreInfoButton: JSX.Element = (
         <button
@@ -186,7 +177,7 @@ const MainComponent = ({ isDark, isAbsolute }: { isDark: boolean; isAbsolute: bo
                     <div className={"main-view"}>
                         <code className={"main-view-title"}>
                             <TextTransition
-                                text={getCurrentCountries}
+                                text={t(getCurrentCountries) as string}
                                 springConfig={presets.gentle}
                                 style={{ fontFamily: "Liberation Mono", fontWeight: 400 }}
                             />
@@ -236,7 +227,7 @@ const MainComponent = ({ isDark, isAbsolute }: { isDark: boolean; isAbsolute: bo
                             </div>
                             <code className={"info"}>
                                 <TextTransition
-                                    text={getClickedLKName}
+                                    text={t(getClickedLKName) as string}
                                     springConfig={presets.gentle}
                                     style={{ fontFamily: "Liberation Mono", fontWeight: 400 }}
                                 />

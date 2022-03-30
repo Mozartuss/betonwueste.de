@@ -1,6 +1,7 @@
 import "../style/DistrictStepComponent.scss";
 import { Dispatch, SetStateAction, useEffect } from "react";
 import { districts, prevAll } from "../utils/Helper";
+import { useTranslation } from "react-i18next";
 
 const DistrictStepComponent = ({
     getDistrict,
@@ -9,10 +10,10 @@ const DistrictStepComponent = ({
     getDistrict: string;
     setDistrict: Dispatch<SetStateAction<string>>;
 }): JSX.Element => {
+    const { t } = useTranslation();
     /**
      * Update view if the user click on a district at the left district-bar
      */
-
     useEffect(() => {
         const progressElement: HTMLDivElement = document.querySelector(".progress") as HTMLDivElement;
         const label: HTMLDivElement = progressElement.querySelector(".left") as HTMLDivElement;
@@ -47,7 +48,7 @@ const DistrictStepComponent = ({
                                         setDistrict(value);
                                     }}
                                 >
-                                    <p>{value}</p>
+                                    <p>{t(value)}</p>
                                 </div>
                             );
                         } else {
@@ -59,7 +60,7 @@ const DistrictStepComponent = ({
                                         setDistrict(value);
                                     }}
                                 >
-                                    <p>{value}</p>
+                                    <p>{t(value)}</p>
                                 </div>
                             );
                         }

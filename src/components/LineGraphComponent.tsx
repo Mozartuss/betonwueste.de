@@ -4,6 +4,7 @@ import { Dispatch, SetStateAction, useMemo } from "react";
 import data from "../data/data.json";
 import { ICLickedLK } from "./MainComponent";
 import { IDataEntry } from "../utils/Helper";
+import { useTranslation } from "react-i18next";
 
 const LineGraphComponent = ({
     getClickedLK,
@@ -20,6 +21,7 @@ const LineGraphComponent = ({
     handleModalClick2: () => void;
     setCurrentYear: Dispatch<SetStateAction<number>>;
 }): JSX.Element => {
+    const { t } = useTranslation();
     const getSelectedData = useMemo(() => {
         return data.filter((entry: IDataEntry) => entry.AGS == parseInt(getClickedLK.AGS));
     }, [getClickedLK]);
@@ -39,11 +41,11 @@ const LineGraphComponent = ({
 
         return [
             {
-                name: "Verbrauchte Fläche",
+                name: t("Verbrauchte Fläche"),
                 data: usedAreaData,
             },
         ];
-    }, [getSelectedData]);
+    }, [t, getSelectedData]);
     const options: ApexOptions = useMemo<ApexOptions>(() => {
         return {
             chart: {
@@ -123,7 +125,7 @@ const LineGraphComponent = ({
                                 color: "var(--color-white)",
                                 background: "var(--color-black)",
                             },
-                            text: "Aktuell",
+                            text: t("Aktuell"),
                         },
                     },
                 ],
@@ -190,7 +192,7 @@ const LineGraphComponent = ({
                 mode: isDark ? "dark" : "light",
             },
         };
-    }, [getCurrentYear, isDark, handleModalClick, handleModalClick2, setCurrentYear]);
+    }, [t, getCurrentYear, isDark, handleModalClick, handleModalClick2, setCurrentYear]);
 
     return <Chart options={options} series={usedAreaSeries} type="line" height={"100%"} width={"100%"} />;
 };

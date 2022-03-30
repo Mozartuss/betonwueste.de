@@ -4,6 +4,7 @@ import { DarkModeSwitch } from "react-toggle-dark-mode";
 import SwitchSelector from "react-switch-selector";
 import useWindowDimensions from "../hooks/useWindowDimensions";
 import InformationPopup from "./InformationPopup";
+import { useTranslation } from "react-i18next";
 
 const HeaderButtons = ({
     isDark,
@@ -14,6 +15,7 @@ const HeaderButtons = ({
     setIsDark: (isDark: boolean) => void;
     setIsAbsolute: (isAbsolute: boolean) => void;
 }): JSX.Element => {
+    const { i18n, t } = useTranslation();
     const [showPopup, setShowPopup] = useState<boolean | null>(null);
     const headerButtonContainer = useRef<HTMLDivElement>(null);
     const { width, height } = useWindowDimensions();
@@ -35,16 +37,35 @@ const HeaderButtons = ({
 
     const switchOptions = [
         {
-            label: "Absolut",
+            label: t("absolut"),
             value: false,
             selectedBackgroundColor: "var(--color-black)",
         },
         {
-            label: "Prozentual",
+            label: t("prozentual"),
             value: true,
             selectedBackgroundColor: "var(--color-black)",
         },
     ];
+
+    const languageSwitchOptions = [
+        {
+            label: "EN",
+            value: "en",
+            selectedBackgroundColor: "var(--color-black)",
+        },
+        {
+            label: "DE",
+            value: "de",
+            selectedBackgroundColor: "var(--color-black)",
+            default: true,
+        },
+    ];
+
+    const changeLanguage = (lang: string) => {
+        console.log(lang);
+        i18n.changeLanguage(lang);
+    };
 
     return (
         <>
@@ -65,6 +86,21 @@ const HeaderButtons = ({
                 <button onClick={() => setShowPopup(true)} className={"data-info-button"}>
                     i
                 </button>
+                <div className={"language-switch"}>
+                    <SwitchSelector
+                        name={"language-switch"}
+                        onChange={(state) => changeLanguage(state as string)}
+                        options={languageSwitchOptions}
+                        forcedSelectedIndex={languageSwitchOptions.findIndex(({ value }) => value === i18n.language!)}
+                        backgroundColor={"var(--color-white)"}
+                        fontColor={"var(--color-black)"}
+                        border={"1px solid var(--color-black)"}
+                        optionBorderRadius={3}
+                        wrapperBorderRadius={4}
+                        selectedFontColor={"var(--color-white)"}
+                        selectionIndicatorMargin={-0.7}
+                    />
+                </div>
                 <DarkModeSwitch
                     checked={isDark}
                     onChange={setIsDark}

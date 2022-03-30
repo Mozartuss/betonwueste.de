@@ -1,6 +1,7 @@
 import { ReactComponent as Sankey } from "../style/image/sankey.svg";
 import { ReactComponent as SankeyDark } from "../style/image/sankey-dark.svg";
 import PopupComponent from "./PopupComponent";
+import { useTranslation } from "react-i18next";
 
 const InformationPopup = ({
     isDark,
@@ -11,16 +12,13 @@ const InformationPopup = ({
     showPopup: boolean | null;
     setShowPopup: (showPopup: boolean | null) => void;
 }): JSX.Element => {
+    const { t } = useTranslation();
     return (
         <PopupComponent showPopup={showPopup} setShowPopup={setShowPopup}>
             <div className={"content-text"}>
                 <h1>Datensätze</h1>
                 <p>
-                    Um den Flächenverbrauch von 1980 bis 2020 berechnen zu können, wurden mehrere Datenbestände
-                    verwendet. Hierbei wurden zwei unterschiedliche Systeme verwendet einmal das{" "}
-                    <b>Automatisierte Liegenschaftsbuch</b> (ALB) von 1980 bis 2013. Seit 2014 gibt es das <b>A</b>
-                    mtliche <b>Liegenschaftskatasterinformationssystem</b> (ALKIS®). Es war nötig zwei Datensätze zu
-                    verwenden, da in Bayern seit 2014 ALB durch ALKIS® abgelöst wurde.
+                    {t("Datasets")}
                     <br />
                     <br />
                     <a
@@ -28,7 +26,7 @@ const InformationPopup = ({
                         target="_blank"
                         rel="noreferrer noopener"
                     >
-                        Bayerisches Landesamt für Statistik - ALB
+                        {t("blvs")} - ALB
                     </a>
                     <br />
                     <a
@@ -36,33 +34,23 @@ const InformationPopup = ({
                         target="_blank"
                         rel="noreferrer noopener"
                     >
-                        Bayerisches Landesamt für Statistik - ALKIS®
+                        {t("blvs")} - ALKIS®
                     </a>
                 </p>
-                <h1>Flächenverbrauch vs. versiegelte Fläche</h1>
+                <h1>{t("info2_title")}</h1>
+                <p>{t("info2")}</p>
+                <h1>{t("info3_title")}</h1>
                 <p>
-                    Der Flächenverbrauch beschäftigt sich mit der Zunahme von <b>S</b>iedlungs- <b>u</b>nd <b>V</b>
-                    erkehrflächen (SuV), dabei zählen Agrar- und Forstflächen nicht mit rein. Dies ist abzugrenzen von
-                    versiegelter Fläche, denn der Flächenverbrauch beinhaltet auch nicht versiegelte Flächen wie Gärten,
-                    Friedhöfe oder Stellplätze.
-                </p>
-                <h1>Berechnung Flächenverbrauch</h1>
-                <p>
-                    Der Flächenverbrauch ergibt sich aus &quot;Fläche für Siedlung (10000)&quot; und &quot;Fläche für
-                    Verkehr (20000)&quot;, dabei wird bei der Siedlungsfläche &quot;Bergbaubetrieb (14000)&quot; und
-                    &quot;Tagebau, Grube, Steinbruch (15000)&quot; abgezogen. Tagebau und co. gilt als nicht verbraucht
-                    Fläche, da diese in einigen Jahren als See, Wiese oder Wald wieder verwendet wird. Welche Kategorien
-                    genau zum Flächenverbrauch zählen sieht man im Diagramm am Ende dieser Seite.
+                    {t("info3")}
                     <br />
                     <br />
-                    Für weitere Informationen siehe:{" "}
+                    {t("info3_more_info")}{" "}
                     <a
                         href={
                             "https://www.destatis.de/DE/Themen/Branchen-Unternehmen/Landwirtschaft-Forstwirtschaft-Fischerei/Flaechennutzung/Publikationen/_publikationen-innen-indikator-siedlungs-verkehrsflaeche.html"
                         }
                     >
-                        Statistisches Bundesamt &quot;Erläuterung und Grafik zum Flächenindikator &quot;Anstieg der
-                        Siedlungs- und Verkehrsfläche&quot; [ha/Tag]&quot;
+                        {t("info3_link")}
                     </a>
                 </p>
                 <h1>Sprung in den Daten 2014</h1>
