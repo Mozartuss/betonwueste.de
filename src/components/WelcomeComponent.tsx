@@ -4,8 +4,10 @@ import { useEffect, useRef, useState } from "react";
 import useWindowDimensions from "../hooks/useWindowDimensions";
 import PopupComponent from "./PopupComponent";
 import PrivacyPolicyComponent from "./PrivacyPolicyComponent";
+import { useTranslation, Trans } from "react-i18next";
 
 const WelcomeComponent = (): JSX.Element => {
+    const { t } = useTranslation();
     const [scrollPosition, setScrollPosition] = useState(0);
     const [showPrivacyPolicyPopup, setShowPrivacyPolicyPopup] = useState<boolean | null>(null);
     const backgroundRef = useRef<HTMLDivElement>(null);
@@ -62,16 +64,18 @@ const WelcomeComponent = (): JSX.Element => {
                     titleContainerRef.current.style.color = "rgb(28, 28, 30)";
                 }
 
-                const titleHeight = WD.height * 0.15;
-                const subTitleHeight = WD.height * 0.05;
+                const titleHeight = WD.width * 0.1;
+                const subTitleHeight = WD.width * 0.035;
                 titleContainerRef.current.style.top = `${resize({ num: relPos, minVal: 10, maxVal: 100 })}%`;
                 subTitleRef.current.style.fontSize = `${resize({
                     num: subTitleHeight - ((subTitleHeight - 16) / 100) * relPos,
                     minVal: 16,
+                    maxVal: 50,
                 })}px`;
                 titleRef.current.style.fontSize = `${resize({
                     num: titleHeight - ((titleHeight - 45) / 100) * relPos,
                     minVal: 45,
+                    maxVal: 150,
                 })}px`;
                 quoteRef.current.style.opacity = `${100 - relPos * 3}%`;
                 mouseRef.current.style.opacity = `${100 - relPos * 2}%`;
@@ -96,28 +100,20 @@ const WelcomeComponent = (): JSX.Element => {
                             Betonwüste
                         </p>
                         <p className={"subtitle"} ref={subTitleRef}>
-                            Flächenverbrauch Bayerns in Zahlen
+                            {t("subtitle")}
                         </p>
                     </div>
                     <div className={"quote-container"} ref={quoteRef}>
                         <div className={"item quote1"}>
                             <div className={"quotation-mark"} />
-                            <p className={"text"}>
-                                {
-                                    "Durch das Wachstum ist die Siedlungs- und Verkehrsfläche von 1980 bis 2017 um mehr als ein Drittel angewachsen."
-                                }
-                            </p>
+                            <p className={"text"}>{t("quote1")}</p>
                             <p className={"author"}>
                                 <i>{"- Planungsverband Äußerer Wirtschaftsraum München"}</i>
                             </p>
                         </div>
                         <div className={"item quote2"}>
                             <div className={"quotation-mark"} />
-                            <p className={"text"}>
-                                {
-                                    "Derzeit werden in Bayern täglich 10,8 Hektar Boden für Industriegebiete, Straßen und Siedlungen zubetoniert."
-                                }
-                            </p>
+                            <p className={"text"}>{t("quote2")}</p>
                             <p className={"author"}>
                                 <i>{"- Ludwig Hartmann, Mitglied des Bayerischen Landtags"}</i>
                             </p>
@@ -137,17 +133,18 @@ const WelcomeComponent = (): JSX.Element => {
                     </div>
                 </Link>
                 <div id={"image-author"} className={"image-author"}>
-                    Foto: Franz Wanner, Secret Service Landmark, aus der Reihe Secret Sites, 2018
+                    <Trans i18nKey={"pic"} />: Franz Wanner, Secret Service Landmark, <Trans i18nKey={"series"} />{" "}
+                    Secret Sites, 2018
                 </div>
                 <div id={"required-links"} className={"required-links"}>
                     <button
                         onClick={() => window.open("https://www.hs-augsburg.de/Service/Impressum.html", "_blank")}
                         className={"link"}
                     >
-                        Impressum
+                        <Trans i18nKey={"impressum"} />
                     </button>
                     <button onClick={() => setShowPrivacyPolicyPopup(true)} className={"link"}>
-                        Datenschutzerklärung
+                        <Trans i18nKey={"datenschutz"} />
                     </button>
                 </div>
             </div>

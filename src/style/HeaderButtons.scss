@@ -1,3 +1,23 @@
+.language-container {
+    position: relative;
+    display: flex;
+    float: left;
+    height: 80px;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 1vw;
+    min-width: 270px;
+
+    .language-switch {
+        position: relative;
+        display: inline-block;
+        height: 24px;
+        width: 90px;
+        float: right;
+        font-family: "Liberation Mono", monospace;
+    }
+}
+
 .header-button-container {
     margin: 0 20px;
     position: relative;

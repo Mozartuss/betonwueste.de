@@ -4,6 +4,7 @@ import { ApexOptions } from "apexcharts";
 import RBDataYear from "../data/RBYear.json";
 import LKDataYear from "../data/LKYear.json";
 import { longNameMap } from "../utils/LookUp";
+import { useTranslation } from "react-i18next";
 
 const StackedBarComponent = ({
     getYear,
@@ -16,6 +17,7 @@ const StackedBarComponent = ({
     isAbsolute: boolean;
     isDark: boolean;
 }): JSX.Element => {
+    const { t } = useTranslation();
     const selectedLK = useMemo(() => {
         let sLK;
         const data = RBDataYear[`31.12.${getYear}`];
@@ -87,6 +89,9 @@ const StackedBarComponent = ({
                 labels: {
                     minWidth: 140,
                     maxWidth: 140,
+                    formatter(val: any): string {
+                        return t(val);
+                    },
                 },
             },
             plotOptions: {
@@ -128,7 +133,7 @@ const StackedBarComponent = ({
                 },
                 x: {
                     formatter(seriesName) {
-                        return longNameMap.get(seriesName.toString()) as string;
+                        return t(longNameMap.get(seriesName.toString()) as string);
                     },
                 },
             },
@@ -157,7 +162,7 @@ const StackedBarComponent = ({
                 mode: isDark ? "dark" : "light",
             },
         };
-    }, [selectedLK, isAbsolute, isDark, getDistrict]);
+    }, [t, selectedLK, isAbsolute, isDark, getDistrict]);
     const series = useMemo(() => {
         const transposedSelectedLK = Object.fromEntries(
             Object.keys(selectedLK[0]).map((key) => [key, selectedLK.map((o) => o[key])])
@@ -165,35 +170,35 @@ const StackedBarComponent = ({
 
         return [
             {
-                name: "Wohnen",
+                name: t("Wohnen"),
                 data: transposedSelectedLK.living,
             },
             {
-                name: "Industrie/Gewerbe",
+                name: t("Industrie/Gewerbe"),
                 data: transposedSelectedLK.industry,
             },
             {
-                name: "Sonstiges",
+                name: t("Sonstiges"),
                 data: transposedSelectedLK.misc_industry_living,
             },
             {
-                name: "Verkehrsflächen",
+                name: t("Verkehrsflächen"),
                 data: transposedSelectedLK.transport_infrastructure,
             },
             {
-                name: "Natur",
+                name: t("Natur"),
                 data: transposedSelectedLK.nature,
             },
             {
-                name: "Wasser",
+                name: t("Wasser"),
                 data: transposedSelectedLK.water,
             },
             {
-                name: "Bergbau",
+                name: t("Bergbau"),
                 data: transposedSelectedLK.mining,
             },
         ];
-    }, [selectedLK]);
+    }, [t, selectedLK]);
     return (
         <>
             <div className="break" />

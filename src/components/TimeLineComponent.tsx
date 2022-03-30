@@ -44,9 +44,11 @@ const TimeLineComponent = ({
      */
     useEffect(() => {
         const districtLeft = document.getElementById("district_left");
-        if (playButtonRef.current && districtLeft) {
-            playButtonRef.current.style.flexBasis = `${districtLeft.offsetWidth + 48}px`;
-            playButtonRef.current.style.left = `${districtLeft.offsetWidth - 20}px`;
+        const timelineProgress = document.getElementById("timeline-progress");
+        if (playButtonRef.current && districtLeft && timelineProgress) {
+            //playButtonRef.current.style.flexBasis = `${districtLeft.offsetWidth + 88}px`;
+            timelineProgress.style.marginLeft = `${districtLeft.offsetWidth + 40}px`;
+            playButtonRef.current.style.left = `${districtLeft.offsetWidth + 20}px`;
         }
     }, [width]);
 
@@ -82,7 +84,7 @@ const TimeLineComponent = ({
                           }
                 }
             />
-            <div className={"timeline-progress"}>
+            <div id={"timeline-progress"} className={"timeline-progress"}>
                 <div className={"above"}>
                     <WarnSymbol
                         onClick={handleModalClick}
