@@ -90,7 +90,7 @@ const StackedBarComponent = ({
                     minWidth: 140,
                     maxWidth: 140,
                     formatter(val: any): string {
-                        return t(longNameMap.get(val) as string);
+                        return t(val);
                     },
                 },
             },

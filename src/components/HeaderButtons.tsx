@@ -29,6 +29,11 @@ const HeaderButtons = ({
         (headerButtonContainer.current as HTMLDivElement).style.width = `${
             containerWidth > 270 ? containerWidth : 270
         }px`;
+        const districtLeft = document.getElementById("district_left");
+        const languageSwitch = document.getElementById("language-switch");
+        if (languageSwitch && districtLeft) {
+            languageSwitch.style.left = `${districtLeft.offsetWidth + 20}px`;
+        }
     }, [width, height]);
 
     useEffect(() => {
@@ -69,6 +74,23 @@ const HeaderButtons = ({
 
     return (
         <>
+            <div className={"language-container"}>
+                <div id={"language-switch"} className={"language-switch"}>
+                    <SwitchSelector
+                        name={"language-switch"}
+                        onChange={(state) => changeLanguage(state as string)}
+                        options={languageSwitchOptions}
+                        forcedSelectedIndex={languageSwitchOptions.findIndex(({ value }) => value === i18n.language)}
+                        backgroundColor={"var(--color-white)"}
+                        fontColor={"var(--color-black)"}
+                        border={"1px solid var(--color-black)"}
+                        optionBorderRadius={3}
+                        wrapperBorderRadius={4}
+                        selectedFontColor={"var(--color-white)"}
+                        selectionIndicatorMargin={-0.7}
+                    />
+                </div>
+            </div>
             <div id={"header-button-container"} className={"header-button-container"} ref={headerButtonContainer}>
                 <div className={"switch"}>
                     <SwitchSelector
@@ -86,21 +108,6 @@ const HeaderButtons = ({
                 <button onClick={() => setShowPopup(true)} className={"data-info-button"}>
                     i
                 </button>
-                <div className={"language-switch"}>
-                    <SwitchSelector
-                        name={"language-switch"}
-                        onChange={(state) => changeLanguage(state as string)}
-                        options={languageSwitchOptions}
-                        forcedSelectedIndex={languageSwitchOptions.findIndex(({ value }) => value === i18n.language!)}
-                        backgroundColor={"var(--color-white)"}
-                        fontColor={"var(--color-black)"}
-                        border={"1px solid var(--color-black)"}
-                        optionBorderRadius={3}
-                        wrapperBorderRadius={4}
-                        selectedFontColor={"var(--color-white)"}
-                        selectionIndicatorMargin={-0.7}
-                    />
-                </div>
                 <DarkModeSwitch
                     checked={isDark}
                     onChange={setIsDark}

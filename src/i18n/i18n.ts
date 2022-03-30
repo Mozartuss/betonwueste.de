@@ -12,7 +12,8 @@ i18n.use(Backend)
         supportedLngs: ["en", "de"],
         debug: true,
         react: {
-            useSuspense: false,
+            useSuspense: true,
+            transKeepBasicHtmlNodesFor: ["br", "strong", "i", "p"],
         },
     });
 

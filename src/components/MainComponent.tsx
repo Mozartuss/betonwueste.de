@@ -100,7 +100,7 @@ const MainComponent = ({ isDark, isAbsolute }: { isDark: boolean; isAbsolute: bo
             (document.getElementById("required-links") as HTMLDivElement).style.filter = "none";
             document.body.style.overflow = "unset";
         }
-    });
+    }, [modalState, modalState2]);
 
     /**
      * Dirty solution:
