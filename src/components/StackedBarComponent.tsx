@@ -89,7 +89,7 @@ const StackedBarComponent = ({
                 labels: {
                     minWidth: 140,
                     maxWidth: 140,
-                    formatter(val: any): string {
+                    formatter(val: never): string {
                         return t(val);
                     },
                 },
