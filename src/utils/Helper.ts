@@ -1,4 +1,5 @@
 import ReactGA from "react-ga4";
+import { Cookies } from "react-cookie-consent";
 
 export const prevAll = (element: HTMLDivElement): HTMLDivElement[] => {
     const result: HTMLDivElement[] = [];
@@ -54,5 +55,18 @@ export const initGA = () => {
         ReactGA.initialize(process.env.REACT_APP_GOOGLE_ANALYTICS_ID);
         ReactGA.set({ anonymizeIp: true });
         ReactGA.send("pageview");
+    }
+};
+
+export const handleDeclineCookie = () => {
+    //remove google analytics cookies
+    Cookies.remove("_ga");
+    Cookies.remove("_gat");
+    Cookies.remove("_gid");
+};
+
+export const handleAcceptCookie = () => {
+    if (process.env.REACT_APP_GOOGLE_ANALYTICS_ID) {
+        initGA();
     }
 };

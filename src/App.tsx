@@ -7,8 +7,8 @@ import { useMediaQuery } from "react-responsive";
 import HeaderButtons from "./components/HeaderButtons";
 import useWindowDimensions, { IWindowDimension } from "./hooks/useWindowDimensions";
 import { useTranslation } from "react-i18next";
-import CookieConsent, { Cookies, getCookieConsentValue } from "react-cookie-consent";
-import { initGA } from "./utils/Helper";
+import CookieConsent, { getCookieConsentValue } from "react-cookie-consent";
+import { handleAcceptCookie, handleDeclineCookie } from "./utils/Helper";
 
 function App(): JSX.Element {
     const { t } = useTranslation();
@@ -20,19 +20,6 @@ function App(): JSX.Element {
     const isSmartphone = useMediaQuery({ maxWidth: 760 });
     const isTablet = useMediaQuery({ minWidth: 760 });
     const isPortrait = useMediaQuery({ orientation: "portrait" });
-
-    const handleDeclineCookie = () => {
-        //remove google analytics cookies
-        Cookies.remove("_ga");
-        Cookies.remove("_gat");
-        Cookies.remove("_gid");
-    };
-
-    const handleAcceptCookie = () => {
-        if (process.env.REACT_APP_GOOGLE_ANALYTICS_ID) {
-            initGA();
-        }
-    };
 
     /**
      * If the website detects a smartphone or tablet in portrait mode, a modal is displayed
@@ -51,7 +38,7 @@ function App(): JSX.Element {
      * Disable Google Analytics if cookie is set to false
      */
     useEffect(() => {
-        const isConsent = getCookieConsentValue();
+        const isConsent = getCookieConsentValue("analyticsCookie");
         if (isConsent === "true") {
             handleAcceptCookie();
         }

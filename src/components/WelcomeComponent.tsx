@@ -5,11 +5,13 @@ import useWindowDimensions from "../hooks/useWindowDimensions";
 import PopupComponent from "./PopupComponent";
 import PrivacyPolicyComponent from "./PrivacyPolicyComponent";
 import { useTranslation, Trans } from "react-i18next";
+import ImprintComponent from "./ImprintComponent";
 
 const WelcomeComponent = (): JSX.Element => {
     const { t } = useTranslation();
     const [scrollPosition, setScrollPosition] = useState(0);
     const [showPrivacyPolicyPopup, setShowPrivacyPolicyPopup] = useState<boolean | null>(null);
+    const [showImprintPolicyPopup, setShowImprintPolicyPopup] = useState<boolean | null>(null);
     const backgroundRef = useRef<HTMLDivElement>(null);
     const titleRef = useRef<HTMLParagraphElement>(null);
     const subTitleRef = useRef<HTMLParagraphElement>(null);
@@ -92,6 +94,9 @@ const WelcomeComponent = (): JSX.Element => {
             <PopupComponent showPopup={showPrivacyPolicyPopup} setShowPopup={setShowPrivacyPolicyPopup}>
                 <PrivacyPolicyComponent />
             </PopupComponent>
+            <PopupComponent showPopup={showImprintPolicyPopup} setShowPopup={setShowImprintPolicyPopup}>
+                <ImprintComponent />
+            </PopupComponent>
             <div id={"welcome-container"} className={"welcome-container"}>
                 <div className={"welcome-background"} ref={backgroundRef} />
                 <div className={"welcome-container"}>
@@ -137,10 +142,7 @@ const WelcomeComponent = (): JSX.Element => {
                     Secret Sites, 2018
                 </div>
                 <div id={"required-links"} className={"required-links"}>
-                    <button
-                        onClick={() => window.open("https://www.hs-augsburg.de/Service/Impressum.html", "_blank")}
-                        className={"link"}
-                    >
+                    <button onClick={() => setShowImprintPolicyPopup(true)} className={"link"}>
                         <Trans i18nKey={"impressum"} />
                     </button>
                     <button onClick={() => setShowPrivacyPolicyPopup(true)} className={"link"}>
