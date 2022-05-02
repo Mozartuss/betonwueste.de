@@ -47,5 +47,8 @@
   "impressum": "Impressum",
   "quellen": "Quellenangaben",
   "München": "München",
-  "München Lkr.": "München Lkr."
+  "München Lkr.": "München Lkr.",
+  "CookieText": "Diese Webseite verwendet Google Analytics um die Nutzererfahrung stetig zu verbessern",
+  "CookieButtonOK": "Akzeptieren",
+  "CookieButtonNO": "Ablehnen"
 }

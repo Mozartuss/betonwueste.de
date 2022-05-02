@@ -8,9 +8,10 @@ i18n.use(Backend)
     .use(initReactI18next)
     .use(LanguageDetector)
     .init({
-        fallbackLng: "en",
+        fallbackLng: "de",
         supportedLngs: ["en", "de"],
-        debug: true,
+        lng: "de",
+        debug: false,
         react: {
             useSuspense: true,
             transKeepBasicHtmlNodesFor: ["br", "strong", "i", "p"],

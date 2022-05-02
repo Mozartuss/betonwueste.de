@@ -47,5 +47,8 @@
   "impressum": "Legal notice",
   "quellen": "Sources",
   "München": "Munich",
-  "München Lkr.": "Munich Lkr."
+  "München Lkr.": "Munich Lkr.",
+  "CookieText": "This page use google analytics to increase the user experience.",
+  "CookieButtonOK": "Accept",
+  "CookieButtonNO": "Decline"
 }

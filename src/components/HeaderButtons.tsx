@@ -68,7 +68,6 @@ const HeaderButtons = ({
     ];
 
     const changeLanguage = (lang: string) => {
-        console.log(lang);
         i18n.changeLanguage(lang);
     };
 
