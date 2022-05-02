@@ -1,7 +1,7 @@
 import MainComponent from "./components/MainComponent";
 import WelcomeComponent from "./components/WelcomeComponent";
 import useLocalStorage from "use-local-storage";
-import React, { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import ModalComponent from "./components/ModalComponent";
 import { useMediaQuery } from "react-responsive";
 import HeaderButtons from "./components/HeaderButtons";
