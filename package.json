@@ -1,8 +1,8 @@
 {
   "name": "visualize",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": false,
-  "homepage": "https://mozartuss.github.io",
+  "homepage": "https://betonwüste.de",
   "dependencies": {
     "apexcharts": "3.35.0",
     "colord": "^2.9.3",
