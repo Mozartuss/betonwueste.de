@@ -56,7 +56,8 @@
         .item {
             position: absolute;
             padding: 15px;
-            transition: color var(--duration) var(--timing),
+            transition:
+                color var(--duration) var(--timing),
                 background-color var(--duration) var(--timing) background var(--duration) var(--timing);
             backdrop-filter: blur(5px);
             background: rgba(white, 0.1);

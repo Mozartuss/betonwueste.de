@@ -23,15 +23,15 @@ export interface ICLickedLK {
 
 const MainComponent = ({ isDark, isAbsolute }: { isDark: boolean; isAbsolute: boolean }): JSX.Element => {
     const { t } = useTranslation();
-    const [getCurrentCountries, setCurrentCountries] = useState<string>("Bayern");
-    const [getCurrentYear, setCurrentYear] = useState<number>(1980);
+    const [currentCountries, setCurrentCountries] = useState<string>("Bayern");
+    const [currentYear, setCurrentYear] = useState<number>(1980);
     const [modalState, setModalState] = useState<boolean>(false);
     const [modalState2, setModalState2] = useState<boolean>(false);
-    const [getClickedLK, setClickedLK] = useState<ICLickedLK>({ BEZ: "Bundesland", GEN: "Bayern", AGS: "09" });
+    const [clickedLK, setClickedLK] = useState<ICLickedLK>({ BEZ: "Bundesland", GEN: "Bayern", AGS: "09" });
 
-    const getClickedLKName = useMemo(() => {
-        return data.find((entry: IDataEntry) => entry.AGS == parseInt(getClickedLK.AGS))?.municipality_short || "";
-    }, [getClickedLK]);
+    const getClickedLKName: string = useMemo(() => {
+        return data.find((entry: IDataEntry) => entry.AGS == parseInt(clickedLK.AGS))?.municipality_short ?? "";
+    }, [clickedLK]);
 
     const colors: { color: string; percent: number }[] = [
         {
@@ -83,6 +83,7 @@ const MainComponent = ({ isDark, isAbsolute }: { isDark: boolean; isAbsolute: bo
      * If modal is open blur background and disable scroll
      */
     useEffect(() => {
+        console.log("blur modal background", modalState, modalState2);
         if (modalState || modalState2) {
             document.body.style.overflow = "hidden";
             document.body.style.touchAction = "none";
@@ -122,8 +123,7 @@ const MainComponent = ({ isDark, isAbsolute }: { isDark: boolean; isAbsolute: bo
     }
 
     function ShowWindowDimensions() {
-        const windowSize = useWindowSize();
-        return windowSize;
+        return useWindowSize();
     }
 
     ShowWindowDimensions();
@@ -172,28 +172,30 @@ const MainComponent = ({ isDark, isAbsolute }: { isDark: boolean; isAbsolute: bo
             <div id={"main-component"} className={"main-component"}>
                 <div className={"graphic-container"}>
                     <div id={"district"} className={"district"}>
-                        <DistrictStepComponent getDistrict={getCurrentCountries} setDistrict={setCurrentCountries} />
+                        <DistrictStepComponent getDistrict={currentCountries} setDistrict={setCurrentCountries} />
                     </div>
                     <div className={"main-view"}>
                         <code className={"main-view-title"}>
                             <TextTransition
-                                text={t(getCurrentCountries) as string}
                                 springConfig={presets.gentle}
                                 style={{ fontFamily: "Liberation Mono", fontWeight: 400 }}
-                            />
+                            >
+                                {t(currentCountries)}
+                            </TextTransition>
                             <div className={"text-transition"} style={{ margin: "0 10px" }}>
                                 &#8210;
                             </div>
                             <TextTransition
-                                text={getCurrentYear}
                                 springConfig={presets.gentle}
                                 style={{ fontFamily: "Liberation Mono", fontWeight: 400 }}
-                            />
+                            >
+                                {currentYear}
+                            </TextTransition>
                         </code>
                         <StackedBarComponent
                             isAbsolute={isAbsolute}
-                            getYear={getCurrentYear}
-                            getDistrict={getCurrentCountries}
+                            getYear={currentYear}
+                            getDistrict={currentCountries}
                             isDark={isDark}
                         />
                     </div>
@@ -201,9 +203,9 @@ const MainComponent = ({ isDark, isAbsolute }: { isDark: boolean; isAbsolute: bo
                         <div className={"map"}>
                             <InteractiveMapContainer
                                 isDark={isDark}
-                                getDistrict={getCurrentCountries}
+                                getDistrict={currentCountries}
                                 setDistrict={setCurrentCountries}
-                                getYear={getCurrentYear}
+                                getYear={currentYear}
                                 setClickedLK={setClickedLK}
                                 redColors={redColors}
                             />
@@ -216,7 +218,7 @@ const MainComponent = ({ isDark, isAbsolute }: { isDark: boolean; isAbsolute: bo
                                         return (
                                             <div
                                                 id={`MapLegend_${index}`}
-                                                key={index}
+                                                key={color}
                                                 className={"map-legend-bar-item"}
                                                 style={{ backgroundColor: color }}
                                             />
@@ -227,19 +229,20 @@ const MainComponent = ({ isDark, isAbsolute }: { isDark: boolean; isAbsolute: bo
                             </div>
                             <code className={"info"}>
                                 <TextTransition
-                                    text={t(getClickedLKName) as string}
                                     springConfig={presets.gentle}
                                     style={{ fontFamily: "Liberation Mono", fontWeight: 400 }}
-                                />
+                                >
+                                    {t(getClickedLKName)}
+                                </TextTransition>
                             </code>
                         </div>
                         <div className={"line-graph"}>
                             <LineGraphComponent
-                                getClickedLK={getClickedLK}
-                                getCurrentYear={getCurrentYear}
+                                getClickedLK={clickedLK}
+                                getCurrentYear={currentYear}
                                 isDark={isDark}
-                                handleModalClick={handleModalClick}
-                                handleModalClick2={handleModalClick2}
+                                handleModalClick={() => setModalState(true)}
+                                handleModalClick2={() => setModalState2(true)}
                                 setCurrentYear={setCurrentYear}
                             />
                         </div>
@@ -248,10 +251,10 @@ const MainComponent = ({ isDark, isAbsolute }: { isDark: boolean; isAbsolute: bo
                 <div id={"timeline-component"} className={"timeline"}>
                     <TimeLineComponent
                         isDark={isDark}
-                        getYear={getCurrentYear}
+                        getYear={currentYear}
                         setYear={setCurrentYear}
-                        handleModalClick={handleModalClick}
-                        handleModalClick2={handleModalClick2}
+                        handleModalClick={() => setModalState(true)}
+                        handleModalClick2={() => setModalState2(true)}
                     />
                 </div>
             </div>

@@ -1,5 +1,5 @@
 import "../style/ModalComponent.scss";
-import { CSSProperties, useEffect, useRef } from "react";
+import { CSSProperties, useRef } from "react";
 
 const ModalComponent = ({
     show,
@@ -23,24 +23,6 @@ const ModalComponent = ({
     wrapperStyle?: CSSProperties;
 }): JSX.Element => {
     const modalRef = useRef(null);
-
-    /**
-     * handles mouse clicks made outside the modal
-     */
-    useEffect(() => {
-        if (handleModalClick) {
-            const checkIfClickedOutside = (e) => {
-                if (show && modalRef.current && !(modalRef.current as HTMLElement).contains(e.target)) {
-                    handleModalClick();
-                }
-            };
-            document.addEventListener("click", checkIfClickedOutside);
-            return () => {
-                // Cleanup the event listener
-                document.removeEventListener("click", checkIfClickedOutside);
-            };
-        }
-    }, [show, handleModalClick]);
 
     return (
         <>

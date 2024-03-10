@@ -112,13 +112,21 @@ body {
 }
 
 * {
-    -webkit-transition: color var(--duration) var(--timing), background-color var(--duration) var(--timing),
+    -webkit-transition:
+        color var(--duration) var(--timing),
+        background-color var(--duration) var(--timing),
         background var(--duration) var(--timing);
-    -moz-transition: color var(--duration) var(--timing), background-color var(--duration) var(--timing),
+    -moz-transition:
+        color var(--duration) var(--timing),
+        background-color var(--duration) var(--timing),
         background var(--duration) var(--timing);
-    -o-transition: color var(--duration) var(--timing), background-color var(--duration) var(--timing),
+    -o-transition:
+        color var(--duration) var(--timing),
+        background-color var(--duration) var(--timing),
         background var(--duration) var(--timing);
-    transition: color var(--duration) var(--timing), background-color var(--duration) var(--timing),
+    transition:
+        color var(--duration) var(--timing),
+        background-color var(--duration) var(--timing),
         background var(--duration) var(--timing);
 }
 
