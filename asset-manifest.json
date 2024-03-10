@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.97ff8810.css",
-    "main.js": "/static/js/main.b2a58795.js",
+    "main.js": "/static/js/main.d34a3e23.js",
     "static/media/frauenkirche.jpg": "/static/media/frauenkirche.4b96e6bf9c6cb57d0f9b.jpg",
     "static/media/sankey-dark.svg": "/static/media/sankey-dark.9e50cef91d5f1e0c67307cd4e7458e68.svg",
     "static/media/sankey.svg": "/static/media/sankey.b1b351e45f8f167b376894064773cf90.svg",
@@ -13,10 +13,10 @@
     "index.html": "/index.html",
     "static/media/getFetch.cjs": "/static/media/getFetch.40f37ddea2378391108f.cjs",
     "main.97ff8810.css.map": "/static/css/main.97ff8810.css.map",
-    "main.b2a58795.js.map": "/static/js/main.b2a58795.js.map"
+    "main.d34a3e23.js.map": "/static/js/main.d34a3e23.js.map"
   },
   "entrypoints": [
     "static/css/main.97ff8810.css",
-    "static/js/main.b2a58795.js"
+    "static/js/main.d34a3e23.js"
   ]
 }
