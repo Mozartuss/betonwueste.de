@@ -83,7 +83,6 @@ const MainComponent = ({ isDark, isAbsolute }: { isDark: boolean; isAbsolute: bo
      * If modal is open blur background and disable scroll
      */
     useEffect(() => {
-        console.log("blur modal background", modalState, modalState2);
         if (modalState || modalState2) {
             document.body.style.overflow = "hidden";
             document.body.style.touchAction = "none";

@@ -40,26 +40,13 @@ const DistrictStepComponent = ({
                     {districts.map((value: string, index: number) => {
                         if (index === 0) {
                             return (
-                                <div
-                                    key={index}
-                                    id={value}
-                                    className={"current"}
-                                    onClick={() => {
-                                        setDistrict(value);
-                                    }}
-                                >
+                                <div key={index} id={value} className={"current"} onClick={() => setDistrict(value)}>
                                     <p>{t(value)}</p>
                                 </div>
                             );
                         } else {
                             return (
-                                <div
-                                    key={index}
-                                    id={value}
-                                    onClick={() => {
-                                        setDistrict(value);
-                                    }}
-                                >
+                                <div key={index} id={value} onClick={() => setDistrict(value)}>
                                     <p>{t(value)}</p>
                                 </div>
                             );

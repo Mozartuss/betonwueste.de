@@ -15,11 +15,7 @@ const ImprintComponent = (): JSX.Element => {
             </p>
 
             <h2>contact</h2>
-            <p>
-                Phone: +4915172816208
-                <br />
-                Mail: lukas@kleybolte.de
-            </p>
+            <p>Mail: lukas@kleybolte.de</p>
         </div>
     ) : (
         <div className={"content-text"} style={{ textAlign: "left" }}>
@@ -37,11 +33,7 @@ const ImprintComponent = (): JSX.Element => {
             </p>
 
             <h2>Kontakt</h2>
-            <p>
-                Telefon: +4915172816208
-                <br />
-                E-Mail: lukas@kleybolte.de
-            </p>
+            <p>E-Mail: lukas@kleybolte.de</p>
         </div>
     );
 };

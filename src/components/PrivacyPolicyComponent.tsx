@@ -57,17 +57,8 @@ const PrivacyPolicyComponent = (): JSX.Element => {
             </p>
             <p>
                 <span>Lukas Kleybolte</span>
-                <br />
-                <span>Auf dem Kreuz 19</span>
-                <br />
-                <span>86152 Augsburg</span>
-                <br />
-                <span>Germany</span>
             </p>
             <p>
-                <span>Telephone: +4915172816208</span>
-                <br />
-                <br />
                 <span>Email: lukas@kleybolte.de</span>
             </p>
             <h2>II. The rights of users and data subjects</h2>
@@ -278,22 +269,10 @@ const PrivacyPolicyComponent = (): JSX.Element => {
             <h2>I. Informationen über uns als Verantwortliche</h2>
             <p>Verantwortlicher Anbieter dieses Internetauftritts im datenschutzrechtlichen Sinne ist:</p>
             <p>
-                <span>
-                    Lukas Kleybolte
-                    <br />
-                    Auf dem Kreuz 19
-                    <br />
-                    86152 Augsburg
-                    <br />
-                    Deutschland
-                </span>
+                <span>Lukas Kleybolte</span>
             </p>
             <p>
-                <span>
-                    Telefon: +4915172816208
-                    <br />
-                    E-Mail: lukas@kleybolte.de
-                </span>
+                <span>E-Mail: lukas@kleybolte.de</span>
             </p>
             <h2>II. Rechte der Nutzer und Betroffenen</h2>
             <p>
