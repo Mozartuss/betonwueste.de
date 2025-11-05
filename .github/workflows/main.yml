@@ -15,6 +15,13 @@ concurrency:
 jobs:
   # Single deploy job since we're just deploying
   deploy:
+    
+    permissions:
+      pages: write
+      contents: write
+      id-token: write
+      actions: read
+
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -36,7 +43,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          branch: gh-pages
+          name: github-pages
           path: './dist'
       - name: Deploy to GitHub Pages
         id: deployment
