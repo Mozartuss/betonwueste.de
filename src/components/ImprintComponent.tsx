@@ -1,4 +1,5 @@
 import i18n from "i18next";
+import { JSX } from "react";
 
 const ImprintComponent = (): JSX.Element => {
     return i18n.language === "en" ? (

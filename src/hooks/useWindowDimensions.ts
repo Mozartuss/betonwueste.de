@@ -10,7 +10,7 @@ const getWindowDimensions = (): IWindowDimension => {
     return { width, height };
 };
 
-export default (): IWindowDimension => {
+const useWindowDimensions = (): IWindowDimension => {
     const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
 
     useEffect(() => {
@@ -24,3 +24,5 @@ export default (): IWindowDimension => {
 
     return windowDimensions;
 };
+
+export default useWindowDimensions;

@@ -1,6 +1,3 @@
-import ReactGA from "react-ga4";
-import { Cookies } from "react-cookie-consent";
-
 export const prevAll = (element: HTMLDivElement): HTMLDivElement[] => {
     const result: HTMLDivElement[] = [];
 
@@ -49,24 +46,3 @@ export const districts = [
 ];
 
 export const years = [1980, 1984, 1988, 1992, 1996, 2000, 2004, 2008, 2012, 2016, 2020];
-
-export const initGA = () => {
-    if (process.env.REACT_APP_GOOGLE_ANALYTICS_ID) {
-        ReactGA.initialize(process.env.REACT_APP_GOOGLE_ANALYTICS_ID);
-        ReactGA.set({ anonymizeIp: true });
-        ReactGA.send("pageview");
-    }
-};
-
-export const handleDeclineCookie = () => {
-    //remove google analytics cookies
-    Cookies.remove("_ga");
-    Cookies.remove("_gat");
-    Cookies.remove("_gid");
-};
-
-export const handleAcceptCookie = () => {
-    if (process.env.REACT_APP_GOOGLE_ANALYTICS_ID) {
-        initGA();
-    }
-};

@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { JSX, useMemo } from "react";
 import Chart from "react-apexcharts";
 import { ApexOptions } from "apexcharts";
 import RBDataYear from "../data/RBYear.json";
@@ -22,7 +22,7 @@ const StackedBarComponent = ({
         let sLK;
         const data = RBDataYear[`31.12.${getYear}`];
         const dataLK = LKDataYear[`31.12.${getYear}`];
-        if (getDistrict == "Bayern") {
+        if (getDistrict === "Bayern") {
             sLK = data;
         } else {
             data.forEach((dataEntry) => {
@@ -84,6 +84,7 @@ const StackedBarComponent = ({
                     },
                 },
                 max: isAbsolute ? 100 : roundedMax,
+                min: 0,
             },
             yaxis: {
                 labels: {
@@ -109,18 +110,21 @@ const StackedBarComponent = ({
                         const value = `${Math.round(val as number)} %`;
                         return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
                     } else {
-                        if ((val >= 700000 && getDistrict == "Bayern") || (val >= 10000 && getDistrict != "Bayern")) {
+                        if (
+                            (Number(val) >= 700000 && getDistrict === "Bayern") ||
+                            (Number(val) >= 15000 && getDistrict !== "Bayern")
+                        ) {
                             const value = `${Math.round(val as number)} ha`;
                             return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
                         } else return "";
                     }
                 },
                 style: {
-                    fontSize: "12px", //Nummern imBarplot
+                    fontSize: "12px",
                 },
             },
             zoom: {
-                enabled: true,
+                enabled: false,
             },
             tooltip: {
                 y: {
@@ -143,7 +147,7 @@ const StackedBarComponent = ({
                 },
             ],
             legend: {
-                fontSize: "16px", //Anzeige verschiedene Flächen
+                fontSize: "16px",
                 position: "top",
                 horizontalAlign: "center",
                 offsetX: 40,

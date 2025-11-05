@@ -1,47 +1,47 @@
 import "../style/TimeLineComponent.scss";
-import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
-import { prevAll, years } from "../utils/Helper";
+import { JSX, Dispatch, SetStateAction, useEffect, useMemo, useRef, useState } from "react";
+import { years } from "../utils/Helper";
 import WarnSymbol from "./WarnSymbol";
-import useWindowDimensions from "../hooks/useWindowDimensions";
 
-const TimeLineComponent = ({
-    getYear,
-    setYear,
-    handleModalClick,
-    handleModalClick2,
-    isDark,
-}: {
+interface TimeLineProps {
     getYear: number;
     setYear: Dispatch<SetStateAction<number>>;
     handleModalClick: () => void;
     handleModalClick2: () => void;
     isDark: boolean;
-}): JSX.Element => {
-    const [playState, setPlayState] = useState<boolean>(false);
+}
+
+const TICK_LABEL_INSET = 16;
+const STEP = 4;
+const END_YEAR = 2020;
+
+export default function TimeLineComponent({
+    getYear,
+    setYear,
+    handleModalClick,
+    handleModalClick2,
+    isDark,
+}: TimeLineProps): JSX.Element {
+    const [playing, setPlaying] = useState(false);
+    const [anchorWidth, setAnchorWidth] = useState<number>(0);
     const playButtonRef = useRef<HTMLButtonElement>(null);
-    const { width } = useWindowDimensions();
+    const containerRef = useRef<HTMLDivElement>(null);
+
     useEffect(() => {
-        const progressElement: HTMLDivElement = document.querySelector(".timeline-progress") as HTMLDivElement;
-        const label: HTMLDivElement = progressElement.querySelector(".below") as HTMLDivElement;
-        const steps: HTMLDivElement[] = [...(label.childNodes as NodeListOf<HTMLDivElement>)];
+        const anchor = document.getElementById("district_left");
+        if (!anchor) return;
 
-        const element: HTMLDivElement = document.getElementById(getYear.toString()) as HTMLDivElement;
+        const ro = new ResizeObserver((entries) => {
+            const w = entries[0]?.contentRect?.width ?? anchor.offsetWidth;
+            setAnchorWidth(w);
+        });
 
-        if (element !== null) {
-            steps.forEach((e: HTMLDivElement) => {
-                e.classList.replace("current", "prev");
-            });
+        ro.observe(anchor);
+        setAnchorWidth(anchor.offsetWidth);
 
-            element.classList.add("current");
-            prevAll(element)
-                .slice(1)
-                .forEach((e) => e.classList.add("prev"));
-        }
-    }, [getYear]);
+        return () => ro.disconnect();
+    }, []);
 
-    /**
-     * set the correct size to align below the main bar chart component
-     */
     useEffect(() => {
         const districtLeft = document.getElementById("district_left");
         const timelineProgress = document.getElementById("timeline-progress");
@@ -50,42 +50,46 @@ const TimeLineComponent = ({
             timelineProgress.style.marginLeft = `${districtLeft.offsetWidth + 40}px`;
             playButtonRef.current.style.left = `${districtLeft.offsetWidth + 20}px`;
         }
-    }, [width]);
+    }, [anchorWidth]);
 
-    /**
-     * Start the animation if a user press the play button
-     */
     useEffect(() => {
-        if (getYear < 2020) {
-            const animation = setTimeout(() => playState && setYear(getYear + 4), 2e3);
-            return () => clearTimeout(animation);
-        } else {
-            setPlayState(false);
+        if (!playing) return;
+        if (getYear >= END_YEAR) {
+            setPlaying(false);
+            return;
         }
-    }, [playState, getYear, setYear]);
+        const id = setTimeout(() => {
+            setYear((y) => Math.min(END_YEAR, y + STEP));
+        }, 2000);
+        return () => clearTimeout(id);
+    }, [playing, getYear, setYear]);
+
+    const tickStates = useMemo(
+        () =>
+            years.map((y) => ({
+                year: y,
+                isCurrent: y === getYear,
+                isPrev: y < getYear,
+            })),
+        [getYear]
+    );
+
+    const canPlay = getYear < END_YEAR;
 
     return (
-        <div className={"timeline-outer"}>
+        <div className="timeline-outer" ref={containerRef}>
             <button
-                className={playState ? "play-button pause" : "play-button"}
-                id={"playButton"}
-                onClick={() => setPlayState((prevState) => !prevState)}
-                disabled={getYear === 2020}
                 ref={playButtonRef}
-                style={
-                    getYear < 2020
-                        ? {
-                              borderColor: "transparent transparent transparent var(--color-black)",
-                              cursor: "pointer",
-                          }
-                        : {
-                              borderColor: "transparent transparent transparent var(--color-gray-3",
-                              cursor: "default",
-                          }
-                }
+                id="playButton"
+                className={`play-button${playing ? " pause" : ""}`}
+                onClick={() => setPlaying((p) => !p)}
+                disabled={!canPlay}
+                aria-pressed={playing}
+                aria-label={playing ? "Pause timeline animation" : "Play timeline animation"}
             />
-            <div id={"timeline-progress"} className={"timeline-progress"}>
-                <div className={"above"}>
+
+            <div id="timeline-progress" className="timeline-progress">
+                <div className="above">
                     <WarnSymbol
                         onClick={handleModalClick}
                         size={24}
@@ -93,11 +97,11 @@ const TimeLineComponent = ({
                             top: "-0.7em",
                             position: "relative",
                             left: "82%",
-                            zIndex: "20",
+                            zIndex: 20,
                             fill: isDark ? "var(--color-white)" : "var(--color-yellow)",
                             stroke: isDark ? "var(--color-yellow)" : "var(--color-black)",
                         }}
-                        color={"var(--color-yellow)"}
+                        color="var(--color-yellow)"
                     />
                     <WarnSymbol
                         onClick={handleModalClick2}
@@ -106,55 +110,56 @@ const TimeLineComponent = ({
                             top: "-0.7em",
                             position: "relative",
                             left: "33%",
-                            zIndex: "20",
+                            zIndex: 20,
                             fill: isDark ? "var(--color-white)" : "var(--color-yellow)",
                             stroke: isDark ? "var(--color-yellow)" : "var(--color-black)",
                         }}
-                        color={"var(--color-yellow)"}
+                        color="var(--color-yellow)"
                     />
-
                     <div />
                     <div />
                 </div>
-                <div className={"below"}>
-                    {years.map((value: number, index: number) => {
-                        if (index === 0) {
-                            return (
-                                <div
-                                    key={index}
-                                    id={value.toString()}
-                                    className={"current"}
-                                    onClick={() => {
-                                        setPlayState(false);
-                                        setYear(value);
-                                    }}
-                                >
-                                    <p key={index} style={{ left: "16px" }}>
-                                        {value}
-                                    </p>
-                                </div>
-                            );
-                        } else {
-                            return (
-                                <div
-                                    key={index}
-                                    id={value.toString()}
-                                    onClick={() => {
-                                        setPlayState(false);
-                                        setYear(value);
-                                    }}
-                                >
-                                    <p key={index} style={index === 10 ? { right: "16px" } : {}}>
-                                        {value}
-                                    </p>
-                                </div>
-                            );
-                        }
+
+                <div className="below">
+                    {tickStates.map(({ year, isCurrent, isPrev }, idx) => {
+                        const classes = ["tick"];
+                        if (isPrev) classes.push("prev");
+                        if (isCurrent) classes.push("current");
+
+                        const labelStyle: React.CSSProperties =
+                            idx === 0
+                                ? { left: TICK_LABEL_INSET }
+                                : idx === years.length - 1
+                                  ? { right: TICK_LABEL_INSET }
+                                  : {};
+
+                        return (
+                            <div
+                                key={year}
+                                id={String(year)}
+                                className={classes.join(" ")}
+                                role="button"
+                                tabIndex={0}
+                                aria-current={isCurrent ? "step" : undefined}
+                                aria-label={`Jump to year ${year}`}
+                                onClick={() => {
+                                    setPlaying(false);
+                                    setYear(year);
+                                }}
+                                onKeyDown={(e) => {
+                                    if (e.key === "Enter" || e.key === " ") {
+                                        e.preventDefault();
+                                        setPlaying(false);
+                                        setYear(year);
+                                    }
+                                }}
+                            >
+                                <p style={labelStyle}>{year}</p>
+                            </div>
+                        );
                     })}
                 </div>
             </div>
         </div>
     );
-};
-
-export default TimeLineComponent;
+}

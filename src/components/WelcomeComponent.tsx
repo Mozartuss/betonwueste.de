@@ -1,9 +1,10 @@
 import "../style/WelcomeComponent.scss";
 import { Link } from "react-scroll";
-import { useEffect, useRef, useState } from "react";
+import { JSX, useEffect, useRef, useState } from "react";
 import useWindowDimensions from "../hooks/useWindowDimensions";
+
+// react-scroll's Link has an incompatible type for JSX in some TS setups; create a simple alias with `any` to avoid the JSX typing error.
 import PopupComponent from "./PopupComponent";
-import PrivacyPolicyComponent from "./PrivacyPolicyComponent";
 import { useTranslation, Trans } from "react-i18next";
 import ImprintComponent from "./ImprintComponent";
 
@@ -91,9 +92,6 @@ const WelcomeComponent = (): JSX.Element => {
 
     return (
         <>
-            <PopupComponent showPopup={showPrivacyPolicyPopup} setShowPopup={setShowPrivacyPolicyPopup}>
-                <PrivacyPolicyComponent />
-            </PopupComponent>
             <PopupComponent showPopup={showImprintPolicyPopup} setShowPopup={setShowImprintPolicyPopup}>
                 <ImprintComponent />
             </PopupComponent>

@@ -1,9 +1,8 @@
-import { useEffect, useLayoutEffect, useMemo, useState } from "react";
+import { JSX, useEffect, useLayoutEffect, useMemo, useState } from "react";
 import DistrictStepComponent from "./DistrictStepComponent";
 import "../style/MainComponent.scss";
 import TimeLineComponent from "./TimeLineComponent";
 import InteractiveMapContainer from "./InteractiveMapContainer";
-import TextTransition, { presets } from "react-text-transition";
 import ModalComponent from "./ModalComponent";
 import LineGraphComponent from "./LineGraphComponent";
 import StackedBarComponent from "./StackedBarComponent";
@@ -12,6 +11,7 @@ import data from "../data/data.json";
 import { IDataEntry } from "../utils/Helper";
 import mixPlugin from "colord/plugins/mix";
 import { useTranslation } from "react-i18next";
+import TextTransition from "./TextTransitionComponent";
 
 extend([mixPlugin]);
 
@@ -30,7 +30,7 @@ const MainComponent = ({ isDark, isAbsolute }: { isDark: boolean; isAbsolute: bo
     const [clickedLK, setClickedLK] = useState<ICLickedLK>({ BEZ: "Bundesland", GEN: "Bayern", AGS: "09" });
 
     const getClickedLKName: string = useMemo(() => {
-        return data.find((entry: IDataEntry) => entry.AGS == parseInt(clickedLK.AGS))?.municipality_short ?? "";
+        return data.find((entry: IDataEntry) => entry.AGS === parseInt(clickedLK.AGS))?.municipality_short ?? "";
     }, [clickedLK]);
 
     const colors: { color: string; percent: number }[] = [
@@ -175,19 +175,13 @@ const MainComponent = ({ isDark, isAbsolute }: { isDark: boolean; isAbsolute: bo
                     </div>
                     <div className={"main-view"}>
                         <code className={"main-view-title"}>
-                            <TextTransition
-                                springConfig={presets.gentle}
-                                style={{ fontFamily: "Liberation Mono", fontWeight: 400 }}
-                            >
+                            <TextTransition style={{ fontFamily: "Liberation Mono", fontWeight: 400 }}>
                                 {t(currentCountries)}
                             </TextTransition>
                             <div className={"text-transition"} style={{ margin: "0 10px" }}>
                                 &#8210;
                             </div>
-                            <TextTransition
-                                springConfig={presets.gentle}
-                                style={{ fontFamily: "Liberation Mono", fontWeight: 400 }}
-                            >
+                            <TextTransition style={{ fontFamily: "Liberation Mono", fontWeight: 400 }}>
                                 {currentYear}
                             </TextTransition>
                         </code>
@@ -227,10 +221,7 @@ const MainComponent = ({ isDark, isAbsolute }: { isDark: boolean; isAbsolute: bo
                                 <div>100%</div>
                             </div>
                             <code className={"info"}>
-                                <TextTransition
-                                    springConfig={presets.gentle}
-                                    style={{ fontFamily: "Liberation Mono", fontWeight: 400 }}
-                                >
+                                <TextTransition style={{ fontFamily: "Liberation Mono", fontWeight: 400 }}>
                                     {t(getClickedLKName)}
                                 </TextTransition>
                             </code>

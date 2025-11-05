@@ -1,10 +1,10 @@
 import "../style/HeaderButtons.scss";
-import { useEffect, useRef, useState } from "react";
-import { DarkModeSwitch } from "react-toggle-dark-mode";
+import { JSX, useEffect, useRef, useState } from "react";
 import SwitchSelector from "react-switch-selector";
 import useWindowDimensions from "../hooks/useWindowDimensions";
 import InformationPopup from "./InformationPopup";
 import { useTranslation } from "react-i18next";
+import { DarkModeSwitch } from "./DarkModeSwitchComponent";
 
 const HeaderButtons = ({
     isDark,

@@ -1,17 +1,13 @@
 import MainComponent from "./components/MainComponent";
 import WelcomeComponent from "./components/WelcomeComponent";
 import useLocalStorage from "use-local-storage";
-import { useEffect, useMemo, useState } from "react";
+import { JSX, useEffect, useMemo, useState } from "react";
 import ModalComponent from "./components/ModalComponent";
 import { useMediaQuery } from "react-responsive";
 import HeaderButtons from "./components/HeaderButtons";
 import useWindowDimensions, { IWindowDimension } from "./hooks/useWindowDimensions";
-import { useTranslation } from "react-i18next";
-import CookieConsent, { getCookieConsentValue } from "react-cookie-consent";
-import { handleAcceptCookie, handleDeclineCookie } from "./utils/Helper";
 
 function App(): JSX.Element {
-    const { t } = useTranslation();
     const defaultDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
     const [isDark, setIsDark] = useLocalStorage("darkMode", defaultDark);
     const [isAbsolute, setIsAbsolute] = useState<boolean>(false);
@@ -33,16 +29,6 @@ function App(): JSX.Element {
             isSmartphone || (isTablet && isPortrait) || !(height > 650 || (height1610 <= height && height <= height43))
         );
     }, [isSmartphone, isPortrait, isTablet, width, height]);
-
-    /**
-     * Disable Google Analytics if cookie is set to false
-     */
-    useEffect(() => {
-        const isConsent = getCookieConsentValue("analyticsCookie");
-        if (isConsent === "true") {
-            handleAcceptCookie();
-        }
-    }, []);
 
     useEffect(() => {
         const welcomeContainer = document.getElementById("welcome-container");
@@ -93,31 +79,6 @@ function App(): JSX.Element {
                     </>
                 )}
             </div>
-            <CookieConsent
-                enableDeclineButton={true}
-                flipButtons={true}
-                declineButtonText={t("CookieButtonNO")}
-                onAccept={handleAcceptCookie}
-                onDecline={handleDeclineCookie}
-                location="bottom"
-                buttonText={t("CookieButtonOK")}
-                cookieName="analyticsCookie"
-                style={{ backgroundColor: "var(--color-black)" }}
-                buttonStyle={{
-                    color: "var(--color-white)",
-                    backgroundColor: "var(--color-green)",
-                    fontSize: "13px",
-                    borderRadius: "3px",
-                }}
-                declineButtonStyle={{
-                    color: "var(--color-white)",
-                    backgroundColor: "var(--color-red)",
-                    fontSize: "13px",
-                    borderRadius: "3px",
-                }}
-            >
-                {t("CookieText")}
-            </CookieConsent>
         </>
     );
 }

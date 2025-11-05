@@ -13,7 +13,6 @@
         display: inline-block;
         height: 24px;
         width: 90px;
-        float: right;
         font-family: "Liberation Mono", monospace;
     }
 }
@@ -32,7 +31,6 @@
     .switch-theme-button {
         display: inline-block;
         position: relative;
-        float: right;
     }
 
     .switch {
@@ -40,14 +38,12 @@
         display: inline-block;
         height: 24px;
         width: 190px;
-        float: left;
         font-family: "Liberation Mono", monospace;
     }
 
     .data-info-button {
         display: inline-block;
         position: relative;
-        float: right;
         font-weight: 800;
         height: 25px;
         width: 25px;

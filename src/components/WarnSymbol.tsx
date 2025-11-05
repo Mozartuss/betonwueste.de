@@ -1,4 +1,4 @@
-import { CSSProperties } from "react";
+import { JSX, CSSProperties } from "react";
 
 const WarnSymbol = ({
     style,

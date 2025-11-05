@@ -1,5 +1,5 @@
 import "../style/ModalComponent.scss";
-import { CSSProperties, useRef } from "react";
+import { JSX, CSSProperties, useRef } from "react";
 
 const ModalComponent = ({
     show,

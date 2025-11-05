@@ -1,7 +1,7 @@
 import { MapContainer, TileLayer } from "react-leaflet";
 import { TileLayer as LeafletTileLayer } from "leaflet";
 import "leaflet/dist/leaflet.css";
-import { Dispatch, SetStateAction, useEffect, useRef } from "react";
+import { JSX, Dispatch, SetStateAction, useEffect, useRef } from "react";
 import InteractiveMap from "./InteractiveMap";
 import { ICLickedLK } from "./MainComponent";
 

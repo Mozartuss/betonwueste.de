@@ -1,6 +1,6 @@
 import Chart from "react-apexcharts";
 import { ApexOptions } from "apexcharts";
-import { Dispatch, SetStateAction, useMemo } from "react";
+import { JSX, Dispatch, SetStateAction, useMemo } from "react";
 import data from "../data/data.json";
 import { ICLickedLK } from "./MainComponent";
 import { IDataEntry } from "../utils/Helper";
@@ -23,7 +23,7 @@ const LineGraphComponent = ({
 }): JSX.Element => {
     const { t } = useTranslation();
     const getSelectedData = useMemo(() => {
-        return data.filter((entry: IDataEntry) => entry.AGS == parseInt(getClickedLK.AGS));
+        return data.filter((entry: IDataEntry) => entry.AGS === parseInt(getClickedLK.AGS));
     }, [getClickedLK]);
 
     /**
@@ -168,7 +168,7 @@ const LineGraphComponent = ({
             },
             yaxis: {
                 min: 0,
-                max: 100,
+                max: 25,
                 tickAmount: 5,
                 decimalsInFloat: 0,
                 labels: {

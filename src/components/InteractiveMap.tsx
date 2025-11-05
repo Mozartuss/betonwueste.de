@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useCallback, useEffect, useMemo, useRef } from "react";
+import { JSX, Dispatch, SetStateAction, useCallback, useEffect, useMemo, useRef } from "react";
 import L, { LatLngBounds } from "leaflet";
 import { GeoJSON, useMap } from "react-leaflet";
 import { Feature, FeatureCollection } from "geojson";
@@ -22,9 +22,9 @@ const InteractiveMap = ({
     getYear: number;
     redColors: string[];
 }): JSX.Element => {
-    const geoJsonRef = useRef<L.GeoJSON>(null);
-    const lastDetailedLayer = useRef<L.GeoJSON>();
-    const currentAGS = useRef<number>();
+    const geoJsonRef = useRef<L.GeoJSON | null>(null);
+    const lastDetailedLayer = useRef<L.GeoJSON | undefined>(undefined);
+    const currentAGS = useRef<number | undefined>(undefined);
     const LKGeoData = useMemo(() => {
         return landkreise;
     }, []);

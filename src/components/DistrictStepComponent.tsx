@@ -1,5 +1,5 @@
 import "../style/DistrictStepComponent.scss";
-import { Dispatch, SetStateAction, useEffect } from "react";
+import { JSX, Dispatch, SetStateAction, useEffect } from "react";
 import { districts, prevAll } from "../utils/Helper";
 import { useTranslation } from "react-i18next";
 
