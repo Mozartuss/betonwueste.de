@@ -17,7 +17,7 @@ i18n.use(HttpBackend)
             transKeepBasicHtmlNodesFor: ["br", "strong", "i", "p"],
         },
         backend: {
-            loadPath: "/locales/{{lng}}/{{ns}}.json",
+            loadPath: "/betonwueste.de/locales/{{lng}}/{{ns}}.json",
         },
     });
 
