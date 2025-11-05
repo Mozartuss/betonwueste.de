@@ -3,7 +3,6 @@ import { Link } from "react-scroll";
 import { JSX, useEffect, useRef, useState } from "react";
 import useWindowDimensions from "../hooks/useWindowDimensions";
 
-// react-scroll's Link has an incompatible type for JSX in some TS setups; create a simple alias with `any` to avoid the JSX typing error.
 import PopupComponent from "./PopupComponent";
 import { useTranslation, Trans } from "react-i18next";
 import ImprintComponent from "./ImprintComponent";

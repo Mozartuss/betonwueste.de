@@ -1,3 +1,5 @@
+@use "sass:math";
+
 .timeline-outer {
     height: 100%;
     display: flex;
@@ -115,7 +117,7 @@
                     top: -$gap;
                     transform: translateX(-50%) translateY(-35%);
                     transition: padding 0.2s ease;
-                    left: $gap/1.1;
+                    left: math.div($gap, 1.1);
                     cursor: pointer;
                     pointer-events: all;
                     border-radius: 4px;
@@ -128,7 +130,7 @@
                     border-radius: 2px;
                     position: absolute;
                     top: -$gap;
-                    left: $gap/1.1;
+                    left: math.div($gap, 1.1);
                     width: 101%;
                     height: $line-thick;
                     transition: width 0.2s ease;

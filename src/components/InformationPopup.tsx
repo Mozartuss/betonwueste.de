@@ -1,5 +1,5 @@
-import { ReactComponent as Sankey } from "../style/image/sankey.svg";
-import { ReactComponent as SankeyDark } from "../style/image/sankey-dark.svg";
+import Sankey from "../style/image/sankey.svg?react";
+import SankeyDark from "../style/image/sankey-dark.svg?react";
 import PopupComponent from "./PopupComponent";
 import { Trans } from "react-i18next";
 import { JSX } from "react";

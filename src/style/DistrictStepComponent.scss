@@ -1,3 +1,5 @@
+@use "sass:math";
+
 .outer {
     display: flex;
     flex-direction: column;
@@ -87,7 +89,7 @@
                     border-radius: 50%;
                     position: absolute;
                     right: -$gap;
-                    top: $line-height/2;
+                    top: math.div($line-height, 2);
                     transform: translateX(50%) translateY(-50%);
                     transition: padding 0.2s ease;
                     cursor: pointer;
@@ -101,7 +103,7 @@
                     border-radius: 2px;
                     position: absolute;
                     right: -$gap;
-                    top: $line-height/2;
+                    top: math.div($line-height, 2);
                     height: 101%;
                     width: $line-thick;
                     transform: translateX(50%);
@@ -124,7 +126,7 @@
                     border-radius: 2px;
                     position: absolute;
                     left: -$gap;
-                    top: $line-height/2;
+                    top: math.div($line-height, 2);
                     height: 100%;
                     width: 1px;
                     transform: translateX(-50%);
